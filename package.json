@@ -1,0 +1,85 @@
+{
+  "name": "goclj",
+  "displayName": "goclj",
+  "description": "Format Clojure code with goclj cljfmt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akedrou/vscode-goclj"
+  },
+  "version": "1.0.0",
+  "publisher": "akedrou",
+  "author": {
+    "name": "Tom Skinner",
+    "email": "tom@akedrou.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Formatters"
+  ],
+  "activationEvents": [
+    "onLanguage:clojure"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": [
+      {
+        "title": "goclj format",
+        "properties": {
+          "goclj.cljfmtPath": {
+            "type": "string",
+            "default": "",
+            "description": "Path to the goclj cljfmt executable."
+          },
+          "goclj.searchPath": {
+            "type": "boolean",
+            "default": false,
+            "description": "Look for goclj cljfmt on the PATH. This defaults to false to avoid conflicting with other cljfmt tools."
+          },
+          "goclj.configFile": {
+            "type": "string",
+            "default": "",
+            "description": "Path to a goclj cljfmt configuration file."
+          }
+        }
+      }
+    ],
+    "commands": [
+      {
+        "command": "goclj.formatDocument",
+        "title": "Format Document with goclj cljfmt"
+      }
+    ],
+    "languages": [
+      {
+        "id": "clojure",
+        "extensions": [
+          ".clj",
+          ".cljs",
+          ".cljc"
+        ]
+      }
+    ],
+    "documentFormatting": [
+      {
+        "language": "clojure",
+        "command": "goclj.formatDocument"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -p . --watch",
+    "test": "npm run compile && vscode-test"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "glob": "^11.0.0",
+    "typescript": "^5.6.3"
+  }
+}
